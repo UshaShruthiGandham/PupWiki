@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.PuppyDetailFragment">
+
+        <ImageView
+            android:id="@+id/puppyImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
+            android:src="@mipmap/ic_puppy"
+            android:contentDescription="@string/selected_dog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/pupDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Title"
+            android:layout_marginTop="15dp"
+            tools:hint="Puppy"
+            android:gravity="center"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/puppyImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/pupPurpose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/SubTitle"
+            android:layout_marginTop="15dp"
+            tools:hint="Puppy Purpose"
+            android:gravity="center"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@+id/pupDesc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/pupTemperment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/SubTitle"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            tools:hint="Temperment"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@+id/pupPurpose"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/pupLifeSpan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/SubTitle"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            tools:hint="Puppy Age 12 - 14 years"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@+id/pupTemperment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

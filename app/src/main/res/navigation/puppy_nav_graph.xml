@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/puppyListFragment">
+
+    <fragment
+        android:id="@+id/puppyListFragment"
+        android:name="com.shruti.pupwiki.view.PuppyListFragment"
+        android:label="PuppyListFragment" >
+        <action
+            android:id="@+id/actionToDetailFragment"
+            app:destination="@id/puppyDetailFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            tools:ignore="PrivateResource" />
+    </fragment>
+    <fragment
+        android:id="@+id/puppyDetailFragment"
+        android:name="com.shruti.pupwiki.view.PuppyDetailFragment"
+        android:label="PuppyDetailFragment" >
+        <action
+            android:id="@+id/actionToListFragment"
+            app:destination="@id/puppyListFragment" />
+        <argument
+            android:name="puppyUuid"
+            android:defaultValue="0"
+            app:argType="integer"/>
+    </fragment>
+</navigation>
