@@ -1,7 +1,10 @@
 package com.shruti.pupwiki.util
 
 import android.content.Context
+import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -25,4 +28,13 @@ fun ImageView.loadImage(uri: String?, progressDrawable: CircularProgressDrawable
         .setDefaultRequestOptions(options)
         .load(uri)
         .into(this)
+}
+
+@BindingAdapter("android:imageUrl")
+fun loadImage(view : ImageView, url : String?){
+    view.loadImage(url, getProgressDrawable(view.context))
+}
+@BindingAdapter("android:visibility")
+fun setVisibility(view: TextView, vale:String?){
+    view.setVisibility(if(vale.isNullOrEmpty()) View.GONE else View.VISIBLE)
 }

@@ -2,6 +2,11 @@
 <layout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="pup"
+            type="com.shruti.pupwiki.model.PuppyBreedItem" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="68dp"
             android:src="@mipmap/ic_puppy"
+            android:imageUrl="@{pup.url}"
             android:contentDescription="@string/selected_dog"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -25,6 +31,7 @@
             style="@style/Title"
             android:layout_marginTop="15dp"
             tools:hint="Puppy"
+            android:text="@{pup.name}"
             android:gravity="center"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/puppyImage"
@@ -36,9 +43,10 @@
             android:layout_height="wrap_content"
             style="@style/SubTitle"
             android:layout_marginTop="15dp"
+            android:text="@{pup.breedGroup}"
             tools:hint="Puppy Purpose"
             android:gravity="center"
-            android:visibility="gone"
+            android:visibility="@{pup.breedGroup}"
             tools:visibility="visible"
             app:layout_constraintTop_toBottomOf="@+id/pupDesc"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,8 +58,9 @@
             style="@style/SubTitle"
             android:gravity="center"
             android:layout_marginTop="15dp"
+            android:text="@{pup.temperament}"
             tools:hint="Temperment"
-            android:visibility="gone"
+            android:visibility="@{pup.temperament}"
             tools:visibility="visible"
             app:layout_constraintTop_toBottomOf="@+id/pupPurpose"
             app:layout_constraintEnd_toEndOf="parent"
@@ -63,8 +72,9 @@
             style="@style/SubTitle"
             android:gravity="center"
             android:layout_marginTop="15dp"
+            android:text="@{pup.lifeSpan}"
             tools:hint="Puppy Age 12 - 14 years"
-            android:visibility="gone"
+            android:visibility="@{pup.lifeSpan}"
             tools:visibility="visible"
             app:layout_constraintTop_toBottomOf="@+id/pupTemperment"
             app:layout_constraintEnd_toEndOf="parent"

@@ -4,14 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.shruti.pupwiki.R
-import com.shruti.pupwiki.util.getProgressDrawable
-import com.shruti.pupwiki.util.loadImage
+import com.shruti.pupwiki.databinding.PuppyDetailFragmentBinding
 import com.shruti.pupwiki.viewmodel.PuppyDetailViewModel
-import kotlinx.android.synthetic.main.puppy_detail_fragment.*
 
 class PuppyDetailFragment : Fragment() {
 
@@ -19,11 +18,20 @@ class PuppyDetailFragment : Fragment() {
 
     private var pupUuid = 0
 
+    private lateinit var dataBinding :PuppyDetailFragmentBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.puppy_detail_fragment, container, false)
+        dataBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.puppy_detail_fragment,
+            container,
+            false
+        )
+        return dataBinding.root
+        // return inflater.inflate(R.layout.puppy_detail_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,27 +42,28 @@ class PuppyDetailFragment : Fragment() {
         }
         viewModel.getPupData(pupUuid)
 
-        observeViewModel()
+        observeViewModel(view)
     }
 
-    private fun observeViewModel() {
+    private fun observeViewModel(view: View) {
         viewModel.puppies.observe(viewLifecycleOwner, Observer { puppies ->
 
             puppies?.let {
-                pupDesc.text = puppies.name
-                if(!puppies.breedGroup.isNullOrEmpty()) {
+                dataBinding.pup = puppies
+                /*pupDesc.text = puppies.name
+                if (!puppies.breedGroup.isNullOrEmpty()) {
                     pupPurpose.visibility = View.VISIBLE
                     pupPurpose.text = puppies.breedGroup
                 }
-                if(!puppies.temperament.isNullOrEmpty()) {
+                if (!puppies.temperament.isNullOrEmpty()) {
                     pupTemperment.visibility = View.VISIBLE
                     pupTemperment.text = puppies.temperament
                 }
-                if(!puppies.lifeSpan.isNullOrEmpty()) {
+                if (!puppies.lifeSpan.isNullOrEmpty()) {
                     pupLifeSpan.visibility = View.VISIBLE
                     pupLifeSpan.text = puppies.lifeSpan
                 }
-                puppyImage.loadImage(puppies.url, getProgressDrawable(puppyImage.context))
+                puppyImage.loadImage(puppies.url, getProgressDrawable(puppyImage.context))*/
             }
         })
     }
