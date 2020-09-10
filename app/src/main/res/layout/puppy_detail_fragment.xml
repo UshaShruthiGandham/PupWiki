@@ -6,15 +6,19 @@
         <variable
             name="pup"
             type="com.shruti.pupwiki.model.PuppyBreedItem" />
+        <variable
+            name="palette"
+            type="com.shruti.pupwiki.model.PupPalette" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@{palette.color}"
         tools:context=".view.PuppyDetailFragment">
 
         <ImageView
             android:id="@+id/puppyImage"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="68dp"
             android:src="@mipmap/ic_puppy"

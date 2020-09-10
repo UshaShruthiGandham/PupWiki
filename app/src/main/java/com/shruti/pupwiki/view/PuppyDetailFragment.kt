@@ -1,5 +1,7 @@
 package com.shruti.pupwiki.view
 
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +10,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.palette.graphics.Palette
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.shruti.pupwiki.R
 import com.shruti.pupwiki.databinding.PuppyDetailFragmentBinding
+import com.shruti.pupwiki.model.PupPalette
 import com.shruti.pupwiki.viewmodel.PuppyDetailViewModel
 
 class PuppyDetailFragment : Fragment() {
@@ -50,6 +57,9 @@ class PuppyDetailFragment : Fragment() {
 
             puppies?.let {
                 dataBinding.pup = puppies
+                it.url?.let {
+                    setUpBG(it)
+                }
                 /*pupDesc.text = puppies.name
                 if (!puppies.breedGroup.isNullOrEmpty()) {
                     pupPurpose.visibility = View.VISIBLE
@@ -66,6 +76,26 @@ class PuppyDetailFragment : Fragment() {
                 puppyImage.loadImage(puppies.url, getProgressDrawable(puppyImage.context))*/
             }
         })
+    }
+
+    private fun setUpBG(url : String){
+        Glide.with(this)
+            .asBitmap()
+            .load(url)
+            .into(object : CustomTarget<Bitmap>(){
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                    Palette.from(resource)
+                        .generate {palette ->
+                            val intColor = palette?.mutedSwatch?.rgb ?: 0
+                            val myPalette = PupPalette(intColor)
+                            dataBinding.palette = myPalette
+                        }
+                }
+
+                override fun onLoadCleared(placeholder: Drawable?) {
+                }
+
+            })
     }
 
 }

@@ -27,3 +27,5 @@ data class PuppyBreedItem(
     @ColumnInfo(name = "breed_url")
     val url: String?,
 )
+
+data class PupPalette(var color : Int)
