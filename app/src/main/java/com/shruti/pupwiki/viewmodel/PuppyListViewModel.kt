@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.shruti.pupwiki.model.PupDatabase
 import com.shruti.pupwiki.model.PuppyBreedItem
 import com.shruti.pupwiki.service.PuppiesApiService
+import com.shruti.pupwiki.util.NotificationsHelper
 import com.shruti.pupwiki.util.SharedPreferencesHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -68,6 +69,7 @@ class PuppyListViewModel(application: Application) : BaseViewModel(application) 
                     override fun onSuccess(puppyList: List<PuppyBreedItem>) {
                         storeDogsInDB(puppyList)
                         Toast.makeText(getApplication(), "Pups retrieved from Remote", Toast.LENGTH_SHORT).show()
+                        NotificationsHelper(getApplication()).createNotification()
                     }
 
                     override fun onError(e: Throwable) {
