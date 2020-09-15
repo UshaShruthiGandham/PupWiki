@@ -33,12 +33,12 @@ class PuppyListFragment : Fragment() {
         viewModel.refresh()
 
         pupListView.apply {
-            pupListView.setHasFixedSize(true)
+            setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = pupAdapter
 
             refreshLayout.setOnRefreshListener {
-                pupListView.visibility = View.GONE
+                visibility = View.GONE
                 listError.visibility = View.GONE
                 progressBar.visibility = View.GONE
                 viewModel.refreshByPassCache()
